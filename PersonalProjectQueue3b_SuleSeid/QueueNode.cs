@@ -10,13 +10,13 @@ namespace PersonalProjectQueue3b_SuleSeid
     // Node class representing each element in the stack
     public class QueueNode<T>
     {
-        public int Data { get; set; }// Value of the node
+        public T Value { get; set; }// Value of the node
         public QueueNode<T> Next { get; set; }// Reference to the next node in the stack
 
         // Constructor to create a new node with a value
-        public QueueNode(int data)
+        public QueueNode(T value)
         {
-            Data = data;
+            Value = value;
             Next = null;
         }
     }
@@ -25,9 +25,9 @@ namespace PersonalProjectQueue3b_SuleSeid
     {
         private QueueNode<int> top; // Top element of the stack
         // We have to add an element on the top of the stack
-        public void Push(int data) 
+        public void Push(int value) 
         {
-            QueueNode<int> newNode = new QueueNode<int>(data);
+            QueueNode<int> newNode = new QueueNode<int>(value);
             newNode.Next = top;
             top = newNode;
         }
@@ -37,9 +37,9 @@ namespace PersonalProjectQueue3b_SuleSeid
             if (top == null)
                 throw new InvalidOperationException("Stack is empty");
 
-            int data = top.Data;
+            int value = top.Value;
             top = top.Next;
-            return data;
+            return value;
         }
         // Get the value of the top element without removing it
         public int Peek()
@@ -47,7 +47,7 @@ namespace PersonalProjectQueue3b_SuleSeid
             if (top == null)
                 throw new InvalidOperationException("Stack is empty");
 
-            return top.Data;
+            return top.Value;
         }
         // Lets Check if the stack is empty
         public bool Empty()
@@ -55,13 +55,13 @@ namespace PersonalProjectQueue3b_SuleSeid
             return top == null;
         }
         // Search for an element and return if it exists in the stack.
-        public int Search(int data)
+        public int Search(int value)
         {
             int index = 1;
             QueueNode<int> current = top;
             while (current != null)
             {
-                if (current.Data == data)
+                if (current.Value == value)
                     return index;
                 current = current.Next;
                 index++;
@@ -77,9 +77,9 @@ namespace PersonalProjectQueue3b_SuleSeid
         private CustomStack stack2 = new CustomStack();// Stack for dequeue operation
 
         // Add an element to the queue
-        public void Enqueue(int data)
+        public void Enqueue(int value)
         {
-            stack1.Push(data);
+            stack1.Push(value);
         }
         // Remove and return the first added element from the queue
         public int Dequeue()
